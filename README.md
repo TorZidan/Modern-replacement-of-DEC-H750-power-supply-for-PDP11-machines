@@ -3,21 +3,19 @@
 This project is about building a modern power supply for my PDP11/05 vintage computer.
 You can see a video of a similar computer at https://youtu.be/JA9q6E1sv1I?si=HaifS1z651YgPFed .
 
-The original power supply (PSU) is model number H750, made by DEC (Digital Equipment Corporation).
-It consists of a bulky transformer and a PSU board (also known as "regulator board"); they are mounted separately into the right compartment of my PDP (meaning that the power supply is not one removable unit, but is made of two separate removable components).
-
-
 ## Overview:
+The original power supply (PSU) is model number H750, made by DEC (Digital Equipment Corporation).
+It is a metal tray with a bulky transformer, PSU board (also known as "DC regulator board model 5409728") and a fan.
+
 We will disconnect and remove and save away the original PSU board; we will disconnect the original transformer, but leave it inside the computer (just because there is enough space for it to stay there).
 We will build the new power supply from off-the-shelf components and connect it in place of the old PSU board. No modifications to the existing wiring will be done, meaning that we can restore the computer to its original condition, if wanted.
+We will keep the original fan unmodified and use it for cooling down the new PSU; however, I recommend replacing it with a modern low-noise fan.
 
 ## Why this project?
 After paying $200 to replace the four largest electrolythinc capacitors on the original PSU board (they are enormously big and hence expensive), I have a second thought about keeping the original PSU operational. The new PSU costs $70 total, and should provide years of reliable use.
 
-## As-Is (original) wiring diagram:
-
-
 ## New wiring diagram:
+![New PSU Wiring Diagram](./photos/H750ReplacementPowerSupplyWiringDiagram.png)
 
 ## Power requirements
 We found them at [http://www.bitsavers.org/www.computer.museum.uq.edu.au/pdf/DEC-11-H05AA-B-D%20PDP-11-05,%2011-10%20Computer%20Manual.pdf, page 239
@@ -74,7 +72,7 @@ Crimp 3 wires (white, black and green) to the 3 male pins, and plug them at the 
 
 Crimp 6 different-colored wires to the 6 female pins, and plug them in the 9-pin connector. Connect the other ends according to the diagram.
 
-Verify your work by comparing it with the wiring diagram and the provided photos.
+Verify your work by comparing it with the wiring diagram and the provided photos. Pull on each wire and ensure that it is secured well.
 
 Unplug the PDP computer power cable from the outlet. 
 Disconnect the original regulator board (the capacitors on the board may still hold power which may shock you if you handle the board improperly!); leave the original bulky transformer disconnected (or remove it if wanted, to reduce the weight of the computer).
@@ -90,3 +88,10 @@ Adjust the voltage on the DC-to-DC step-up transformer to 15.0V by rotating the 
 Measure the voltages at the 9-pin (DC out) connector and make sure they are the same as on the diagram. If not, 
 
 Turn off the PDP from the key on the front panel, disconnect the PDP computer power cable, plug the 9-pin (DC out) connector into the PDP, then restore power and turn on the power key again to horizontal position (power on). The PDP should run. Measure the voltages on the back of the backplane; I have labeled the wires (using white paper tape) that provide power to the backplane with labels "5V", "15V", "-15V", "Ground"; this simplifies this check. This is it! We did it. 
+
+## Further improvements:
+ - The "BUS DC LO L" and "BUS AC LO L" power fail early warning signals are supposed to go "high" (to +5V) few milliseconds after the power is turned on (see Page 11 at ...). 
+   We connected them directly to the +5V PSU output, meaning that they go high as soon as the power is on.
+   It seems that things work ok, but we may want to introduce a delay cirquit for these two signals.
+ - The "LTC L output" signal is not being generated.
+

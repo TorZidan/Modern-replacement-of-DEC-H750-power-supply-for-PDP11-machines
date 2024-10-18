@@ -8,7 +8,13 @@ The original power supply (PSU) is model number H750, made by DEC (Digital Equip
 It is a metal tray with a bulky transformer, PSU board (also known as "DC regulator board model 5409728") and a fan.
 
 We will disconnect and remove and save away the original PSU board; we will disconnect the original transformer, but leave it inside the computer (just because there is enough space for it to stay there).
-We will build the new power supply from off-the-shelf components and connect it in place of the old PSU board. No modifications to the existing wiring will be done, meaning that we can restore the computer to its original condition, if wanted.
+
+We will build the new power supply from off-the-shelf components and connect it in place of the old PSU board using the same kind of connectors as the original ones.
+
+The new power supply consists of 2 independant power supplies (one for +5V and one for -15V), and a Dc-to-Dc step-up board that generates +15V from the +5V.
+
+No modifications to the existing wiring will be done, meaning that we can restore the computer to its original condition, if wanted.
+
 We will keep the original fan unmodified and use it for cooling down the new PSU; however, I recommend replacing it with a modern low-noise fan.
 
 ## Why this project?
@@ -17,9 +23,8 @@ After paying $200 to replace the four largest electrolythinc capacitors on the o
 ## New wiring diagram:
 ![New PSU Wiring Diagram](./photos/H750ReplacementPowerSupplyWiringDiagram.png)
 
-## Power requirements
-We found them at [http://www.bitsavers.org/www.computer.museum.uq.edu.au/pdf/DEC-11-H05AA-B-D%20PDP-11-05,%2011-10%20Computer%20Manual.pdf, page 239
-](http://www.bitsavers.org/www.computer.museum.uq.edu.au/pdf/DEC-11-H05AA-B-D%20PDP-11-05,%2011-10%20Computer%20Manual.pdf#page=239) :
+## Power requirements of the PDP computer:
+See them [Here](./DEC_H740_PSU_Documentation.pdf#page=5), Pages 9 and 10. They are:
 
 - +5V at 15A max, to ICs.
 - +15V at 1A max, to I/O (communication) cirquits.
@@ -27,7 +32,7 @@ We found them at [http://www.bitsavers.org/www.computer.museum.uq.edu.au/pdf/DEC
 - Note: the two fans run at 120V AC; they are not powered by the power supply.
 
 The new PSU can provide more than the power required above.
-In reality, I found out that my PDP11/05 uses just a fraction of that (it draws the same amount of power when executing a program and when "halted"):
+In reality, I found out that my PDP11/05 uses much less that (note: it draws the same amount of power when executing a program and when "halted"):
 
 - +5V: 11A
 - +15V: 0.06A
@@ -89,9 +94,24 @@ Measure the voltages at the 9-pin (DC out) connector and make sure they are the 
 
 Turn off the PDP from the key on the front panel, disconnect the PDP computer power cable, plug the 9-pin (DC out) connector into the PDP, then restore power and turn on the power key again to horizontal position (power on). The PDP should run. Measure the voltages on the back of the backplane; I have labeled the wires (using white paper tape) that provide power to the backplane with labels "5V", "15V", "-15V", "Ground"; this simplifies this check. This is it! We did it. 
 
+Note: No cats were harmed while building and testing this project.
+
 ## Further improvements:
  - The "BUS DC LO L" and "BUS AC LO L" power fail early warning signals are supposed to go "high" (to +5V) few milliseconds after the power is turned on (see Page 11 at ...). 
    We connected them directly to the +5V PSU output, meaning that they go high as soon as the power is on.
    It seems that things work ok, but we may want to introduce a delay cirquit for these two signals.
  - The "LTC L output" signal is not being generated.
+
+# Photos
+There are many photos in the [Photos folder](./photos/)
+Here are some of them:
+
+![](./photos/TheNewPsuIsConnectedAndIsOutsideOfTheEnclosureWithLabels.jpg)
+![](./photos/OriginalPsuBoardWithLabels.jpg)
+![](./photos/TheDcToDcBoardIsAdjustedToProduce15V.jpg)
+![](./photos/ACrimpedWire.jpg)
+![](./photos/6Pin120vAcInConnectorWithLabels.jpg)
+![](./photos/9PinDcOutConnectorWithLabels.jpg)
+![](./photos/WeAreRunningFullSpeedWithTheNewPsu.jpg)
+
 

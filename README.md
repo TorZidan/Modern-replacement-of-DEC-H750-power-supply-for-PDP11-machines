@@ -47,7 +47,7 @@ In reality, I found out that my PDP11/05 uses just a fraction of that (it draws 
 - For the DC output connector: 1-480274-0 (MATE-N-LOK, 6-pins in 3rows-by-3columns) from https://www.digikey.com/short/cq30t74r, $1
 - 7 female pins for the connector above (only 7 out of the 9 pins are used): 60619-1 (CONN SOCKET 14-20AWG CRIMP TIN) from https://www.digikey.com/short/59ppt31r, $2 total
 - a few feet of 18 AWG stranded wire similar to the one used in modern computer PSUs (or go with a thicker 16 AWG if you want), ideally in 8 different colors, to reduce wiring mistakes.
-- something to hold these things together. I used a 3inch x 7 inch metal plate TP37 from Home Depot, $2
+- something to hold these things together. I used a 3inch x 7 inch metal plate HTP37 from Home Depot, $3
 - TOTAL COST: about $70 plus tax plus shipping.
 
 Tools:

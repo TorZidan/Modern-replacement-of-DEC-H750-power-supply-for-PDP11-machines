@@ -4,15 +4,15 @@ This project is about building a modern power supply for my PDP11/05 vintage com
 You can see a video of a similar computer at https://youtu.be/JA9q6E1sv1I?si=HaifS1z651YgPFed .
 
 The original power supply (PSU) is model number H750, made by DEC (Digital Equipment Corporation).
-It consists of a bulky transformer and a logic board; they are mounted separately into the right compartment of my PDP (meaning that the power supply is not one removable unit, but is made of two separate removable components).
+It consists of a bulky transformer and a PSU board (also known as "regulator board"); they are mounted separately into the right compartment of my PDP (meaning that the power supply is not one removable unit, but is made of two separate removable components).
 
 
 ## Overview:
-We will disconnect and remove the original PSU logic board; we will disconnect the original transformer, but leave it inside the computer (just because there is enough space for it to stay there).
-We will build the new power supply from off-the-shelf components and connect it in place of the old logic board. No modifications to the existing wiring will be done, meaning that we can restore the computer to its original condition, if wanted.
+We will disconnect and remove and save away the original PSU board; we will disconnect the original transformer, but leave it inside the computer (just because there is enough space for it to stay there).
+We will build the new power supply from off-the-shelf components and connect it in place of the old PSU board. No modifications to the existing wiring will be done, meaning that we can restore the computer to its original condition, if wanted.
 
 ## Why this project?
-After paying $200 to replace the four largest electrolythinc capacitors on the original logic board (they are enormously big and hence expensive), I have a second thought about keeping the original PSU operational. The new PSU costs $70 total, and should provide years of reliable use.
+After paying $200 to replace the four largest electrolythinc capacitors on the original PSU board (they are enormously big and hence expensive), I have a second thought about keeping the original PSU operational. The new PSU costs $70 total, and should provide years of reliable use.
 
 ## As-Is (original) wiring diagram:
 
@@ -64,6 +64,8 @@ WARNING: you are working with 120V high voltages (or even higher 240V in Europe)
 
 Here is the assembly diagram:
 
+For an experienced electronics enthusiast the diagram  and the photos should be sufficient to assemble the PSU. So the instructions below are somewhat self-explanatory.
+
 Note that the "ground" (the negative terminal) of the 5V PSU is connected to the "+15V" on the 15V PSU (not ground to ground!). This way the 15V PSU provides the "-15V". This is totally acceptable because both PSUs outputs are "isolated", "floating", "not connected to earth's ground".
 
 Assemble the two power supplies and the DC-to-DC step-up transformer board together, on the metal plate. I placed the 5V PSU on top (above) the 15V PSU, and left about 1 inch between them, so that air can flow easily.
@@ -75,9 +77,9 @@ Crimp 6 different-colored wires to the 6 female pins, and plug them in the 9-pin
 Verify your work by comparing it with the wiring diagram and the provided photos.
 
 Unplug the PDP computer power cable from the outlet. 
-Disconnect the original logic board (the capacitors on the board may still hold power which may shock you if you handle the board improperly!); leave the original bulky transformer disconnected (or remove it if wanted, to reduce the weight of the computer).
+Disconnect the original regulator board (the capacitors on the board may still hold power which may shock you if you handle the board improperly!); leave the original bulky transformer disconnected (or remove it if wanted, to reduce the weight of the computer).
 
-Insert the new PSU assembly into the PDP, where the old PSU logic board was. Find a way to secure it there, if needed. Mine is just laying there, unsecured, and I am ok with that.
+Insert the new PSU assembly into the PDP, where the old PSU board was. Find a way to secure it there, if needed. Mine is just laying there, unsecured, and I am ok with that.
 
 Plug the 6-pin connector (120V AC power supply to the PSU) into the PDP. Do not plug the 9-pin connector just yet.
 

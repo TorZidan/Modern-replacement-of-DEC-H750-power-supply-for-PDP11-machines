@@ -11,14 +11,14 @@ We will disconnect and remove and save away the original PSU board; we will disc
 
 We will build the new power supply from off-the-shelf components and connect it in place of the old PSU board using the same kind of connectors as the original ones.
 
-The new power supply consists of 2 independant power supplies (one for +5V and one for -15V), and a Dc-to-Dc step-up board that generates +15V from the +5V.
+The new power supply consists of 2 independent power supplies (one for +5V and one for -15V), and a Dc-to-Dc step-up board that generates +15V from the +5V.
 
 No modifications to the existing wiring will be done, meaning that we can restore the computer to its original condition, if wanted.
 
 We will keep the original fan unmodified and use it for cooling down the new PSU; however, I recommend replacing it with a modern low-noise fan.
 
 ## Why this project?
-After paying $200 to replace the four largest electrolythinc capacitors on the original PSU board (they are enormously big and hence expensive), I have a second thought about keeping the original PSU operational. The new PSU costs $70 total, and should provide years of reliable use.
+After paying $200 to replace the four largest electrolytic capacitors on the original PSU board (they are enormously big and hence expensive), I have a second thought about keeping the original PSU operational. The new PSU costs $70 total, and should provide years of reliable use.
 
 ## New wiring diagram:
 ![New PSU Wiring Diagram](./photos/H750ReplacementPowerSupplyWiringDiagram.png)
@@ -27,7 +27,7 @@ After paying $200 to replace the four largest electrolythinc capacitors on the o
 See them [Here](./DEC_H740_PSU_Documentation.pdf#page=5), Pages 9 and 10. They are:
 
 - +5V at 15A max, to ICs.
-- +15V at 1A max, to I/O (communication) cirquits.
+- +15V at 1A max, to I/O (communication) circuits.
 - -15V at 7A max, to core memory.
 - Note: the two fans run at 120V AC; they are not powered by the power supply.
 
@@ -65,9 +65,7 @@ Note: in many places in this document I talk about "120V" AC power, but in fact 
 
 WARNING: you are working with 120V high voltages (or even higher 240V in Europe)!!! Do this at your own risk. I am not liable for any injuries or monetary loss. Even when power is disconnected, a PSU may hold some power in its capacitors, which may shock you if you handle it improperly.
 
-Here is the assembly diagram:
-
-For an experienced electronics enthusiast the diagram  and the photos should be sufficient to assemble the PSU. So the instructions below are somewhat self-explanatory.
+Follow the assembly diagram above. For an experienced electronics enthusiast the diagram  and the photos should be sufficient to assemble the PSU. So the instructions below are somewhat self-explanatory.
 
 Note that the "ground" (the negative terminal) of the 5V PSU is connected to the "+15V" on the 15V PSU (not ground to ground!). This way the 15V PSU provides the "-15V". This is totally acceptable because both PSUs outputs are "isolated", "floating", "not connected to earth's ground".
 
@@ -75,18 +73,20 @@ Assemble the two power supplies and the DC-to-DC step-up transformer board toget
 
 Crimp 3 wires (white, black and green) to the 3 male pins, and plug them at the proper places in the 6-pin connector. Connect the other end of these wires to the "L" (Load), "N" (Neutral) and Ground terminals on the top PSU, and from there run wires to the bottom PSU; this way, both PSUs will be powered. Cover the "L" (Load) terminal on each PSU with electric tape, to prevent human electrocution.
 
-Crimp 6 different-colored wires to the 6 female pins, and plug them in the 9-pin connector. Connect the other ends according to the diagram.
+Crimp 7 different-colored wires to the 7 female pins, and plug them in the 9-pin connector. Connect the other ends according to the diagram.
+
+Complete all other wirings according to the diagram
 
 Verify your work by comparing it with the wiring diagram and the provided photos. Pull on each wire and ensure that it is secured well.
 
 Unplug the PDP computer power cable from the outlet. 
-Disconnect the original regulator board (the capacitors on the board may still hold power which may shock you if you handle the board improperly!); leave the original bulky transformer disconnected (or remove it if wanted, to reduce the weight of the computer).
+Disconnect the original regulator board (connectors J2, J3, J9). The capacitors on the board may still hold power which may shock you if you handle the board improperly! Leave the original bulky transformer disconnected (or remove it if wanted, to reduce the weight of the computer).
 
-Insert the new PSU assembly into the PDP, where the old PSU board was. Find a way to secure it there, if needed. Mine is just laying there, unsecured, and I am ok with that.
+Make a jumper wire from e.g. 2-inch-long piece of 12-gauge insulated solid copper wire, and plug it into the 2-wire J3 connector (with 2 black cables on it); it is used by the PDP to detect if the PSU has overheated; inserting a jumper wire tells it that the PSU is not overheated. Put some tape to hold the jumper wire in place (to not fall).
+
+Place the new PSU assembly into the PDP, where the old PSU board was. Find a way to secure it there, if needed. Mine is just laying there, unsecured, and I am ok with that.
 
 Plug the 6-pin connector (120V AC power supply to the PSU) into the PDP. Do not plug the 9-pin connector just yet.
-
-Make a jumper wire from e.g. 2-inch-long piece of 12-gauge insulated copper wire, and plug it into the 2-wire connector (with 2 black cables on it); it is used by the PDP to detect if the PSU has overheated; inserting a jumper wire tells it that the PSU is not overheated. Put some tape to hold the jumper wire in place (to not fall).
 
 Plug the PDP computer power cable in the outlet and turn on the key in front of the computer to horizontal position (power on). The two fans on the PDP should start spinning (they are powered by 120V AC), but the PDP will remain off (because the 9-pin connector is not plugged yet).
 Adjust the voltage on the DC-to-DC step-up transformer to 15.0V by rotating the potentiometer on in with a small flat-head screwdriver.
@@ -94,24 +94,28 @@ Measure the voltages at the 9-pin (DC out) connector and make sure they are the 
 
 Turn off the PDP from the key on the front panel, disconnect the PDP computer power cable, plug the 9-pin (DC out) connector into the PDP, then restore power and turn on the power key again to horizontal position (power on). The PDP should run. Measure the voltages on the back of the backplane; I have labeled the wires (using white paper tape) that provide power to the backplane with labels "5V", "15V", "-15V", "Ground"; this simplifies this check. This is it! We did it. 
 
-Note: No cats were harmed while building and testing this project.
+Note: No cats were harmed while building and testing this project!
 
 ## Further improvements:
  - The "BUS DC LO L" and "BUS AC LO L" power fail early warning signals are supposed to go "high" (to +5V) few milliseconds after the power is turned on (see Page 11 at ...). 
    We connected them directly to the +5V PSU output, meaning that they go high as soon as the power is on.
-   It seems that things work ok, but we may want to introduce a delay cirquit for these two signals.
- - The "LTC L output" signal is not being generated.
+   It seems that things work ok, but we may want to introduce a delay circuit for these two signals.
+ - The "LTCL output" 50Hz signal is not being generated by the new PSU. I just capped the brown wire on Pin4 on the J2 DC Out connector (the blue plastic cap on the pictures).
+   This is some kind of a clock signal that is used to track date and time when the machine is running.
+   My PDP is able to execute programs from PDP11GUI just fine; a further investigation is needed to find out where this signal is needed.
 
 # Photos
 There are many photos in the [Photos folder](./photos/)
 Here are some of them:
 
-![](./photos/TheNewPsuIsConnectedAndIsOutsideOfTheEnclosureWithLabels.jpg)
 ![](./photos/OriginalPsuBoardWithLabels.jpg)
+![](./photos/TheNewPsuIsConnectedAndIsOutsideOfTheEnclosureWithLabels.jpg)
+![](./photos/TheNewPsuAssemblyWithLabels.jpg)
 ![](./photos/TheDcToDcBoardIsAdjustedToProduce15V.jpg)
 ![](./photos/ACrimpedWire.jpg)
 ![](./photos/6Pin120vAcInConnectorWithLabels.jpg)
 ![](./photos/9PinDcOutConnectorWithLabels.jpg)
+![](./photos/The5vRailDraws11Amps.jpg)
 ![](./photos/WeAreRunningFullSpeedWithTheNewPsu.jpg)
 
 
